@@ -56,27 +56,27 @@ const swiper = new Swiper('.swiper-container', {
 
 // Mostra elementos quando der scroll mostra suave
 
-const scrollReveal = ScrollReveal({
-  origin: 'top',
-  distance: '30px',
-  duration: 700,
-  reset: true
-})
+// const scrollReveal = ScrollReveal({
+//   origin: 'top',
+//   distance: '30px',
+//   duration: 700,
+//   reset: true
+// })
 
-scrollReveal.reveal(
-  `#home .image,
-   #home .text,
-   #about .text,
-   #about .image,
-   #sevices header, #services .card,
-   #testimonials header, #testimonials .testimonials,
-   #contact .text, #contact .links,
-   footer .brand, footer .social  
-  `,
-  {
-    interval: 100
-  }
-)
+// scrollReveal.reveal(
+//   `#home .image,
+//    #home .text,
+//    #about .text,
+//    #about .image,
+//    #sevices header, #services .card,
+//    #testimonials header, #testimonials .testimonials,
+//    #contact .text, #contact .links,
+//    footer .brand, footer .social
+//   `,
+//   {
+//     interval: 100
+//   }
+// )
 
 // menu ativo conforme a sessao na página
 const sections = document.querySelectorAll('main section[id]')
