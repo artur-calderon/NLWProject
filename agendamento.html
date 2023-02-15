@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./Calendar/calendar.css" />
+    <link rel="stylesheet" href="img/style.css" />
+
+    <title>Agendamento</title>
+</head>
+
+<body>
+    <header id="header">
+        <nav class="container">
+            <a href="#" class="logo">Beauty<span>salon</span></a>
+            <div class="menu">
+                <ul class="grid">
+                    <li><a class="title active" href="#home">Inicio</a></li>
+                    <li><a class="title" href="#about">Sobre</a></li>
+                    <li><a class="title" href="#services">Serviços</a></li>
+                    <!-- <li><a class="title" href="#testimonials">Depoimentos</a></li> -->
+                    <li><a class="title" href="#contact">Contato</a></li>
+                </ul>
+            </div>
+            <div class="toggle icon-menu"></div>
+            <div class="toggle icon-close"></div>
+        </nav>
+    </header>
+    <main>
+        <section class="section">
+            <div class="container grid">
+                <div class="box-selector box-selector--selected">
+                    <p>20:00</p>
+                </div>
+
+                <!-- The selected variant -->
+                <div class="box-selector ">
+                    <p>20:00</p>
+                </div>
+                <div id="calPeriod">
+                    <select id="calMonth"></select>
+                    <input type="number" id="calYear">
+                  </div>
+              
+                  <!-- (B) CALENDAR -->
+                  <div id="calWrap"></div>
+              
+                  <!-- (C) EVENT FORM -->
+                  <dialog id="calForm"><form method="dialog">
+                    <div id="evtClose">X</div>
+                    <h2>CALENDAR EVENT</h2>
+                    <label>Date</label>
+                    <input type="text" id="evtDate" readonly>
+                    <label>Details</label>
+                    <textarea id="evtTxt" required></textarea>
+              
+                    <input id="evtDel" type="button" value="Delete">
+                    <input id="evtSave" type="submit" value="Save">
+                  </form></dialog>
+            </div>
+        </section>
+    </main>
+    <footer class="section">
+        <div class="container grid">
+            <div class="brand">
+                <a href="#home" class="logo">Beauty<span>salon</span></a>
+                <p>2021 Beautysalon</p>
+                <p>Todos os direitos reservados.</p>
+            </div>
+
+            <div class="social">
+                <a href="https://instagram.com/artur.calderon" target="_blank"><i class="icon-instagram"></i></a>
+                <a href="https://facebook.com/artur.calderon35"><i class="icon-facebook"></i></a>
+                <a href="https://youtube.com/artur.calderon"><i class="icon-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+    <a href="#home" class="back-to-top"><img src="assets/fotos/chevron-up.svg" alt="" /></a>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+    <script src="./Calendar/calendar.js"></script>
+
+</body>
+
+</html>
