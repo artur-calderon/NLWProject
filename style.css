@@ -20,9 +20,9 @@ img {
 :root {
   --hue: 159;
   /* hsl color mode */
-  --base-color: hsl(var(--hue) 36% 57%);
-  --base-color-second: hsl(var(--hue) 65% 88%);
-  --base-color-alt: hsl(var(--hue) 57% 53%);
+  --base-color: hsl(337, 60%, 70%);
+  --base-color-second: hsl(335, 35%, 48%);
+  --base-color-alt: hsl(337, 53%, 67%);
   --title-color: hsl(var(--hue) 41% 10%);
   --text-color: hsl(0 0% 46%);
   --text-color-light: hsl(0 0% 98%);
