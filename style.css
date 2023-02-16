@@ -591,7 +591,6 @@ footer .social a:hover {
 .box-selector--selected {
   /* Change the border color */
   border: 2px solid #3b82f6;
-  
 
   /* Used to position the tick */
   position: relative;
@@ -627,3 +626,8 @@ footer .social a:hover {
 }
 
 /* medius devices: 767 */
+
+/* ###### login css ######*/
+.calendarWrap {
+  display: none;
+}

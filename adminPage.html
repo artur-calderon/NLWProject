@@ -33,24 +33,36 @@
       </nav>
     </header>
     <main>
-      <section class="section">
+      <section class="section admin">
         <div class="container grid">
-          <h3>Horários disponíveis</h3>
-          <p>Selecione um horário</p>
-          <div id="calPeriod">
-            <select id="calMonth"></select>
-            <input type="number" id="calYear" />
+          <div class="login">
+            <p>email:</p>
+            <input type="email" name="" id="email" />
+            <p>senha:</p>
+            <input type="password" id="password" />
+            <input type="time" step="1800" />
+            <!-- 5 min step -->
+            <button id="buttonLoga">Entrar</button>
           </div>
 
-          <!-- (B) CALENDAR -->
-          <div id="calWrap"></div>
+          <div class="calendarWrap">
+            <h3>Adicione horários para seus clientes</h3>
+            <p>Clique em uma data para adicionar horários</p>
+            <div id="calPeriod">
+              <select id="calMonth"></select>
+              <input type="number" id="calYear" />
+            </div>
+
+            <!-- (B) CALENDAR -->
+            <div id="calWrap"></div>
+          </div>
 
           <!-- (C) EVENT FORM -->
           <dialog id="calForm">
             <form method="dialog">
               <div id="evtClose">X</div>
-              <h2>CALENDAR EVENT</h2>
-              <label>Date</label>
+              <h2>Adicionar Horário</h2>
+              <label>Data</label>
               <input type="text" id="evtDate" readonly />
               <label>Details</label>
               <textarea id="evtTxt" required></textarea>
@@ -89,7 +101,8 @@
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
+    <script type="module" src="./firebase.js"></script>
     <script src="./Calendar/calendar.js"></script>
   </body>
 </html>
