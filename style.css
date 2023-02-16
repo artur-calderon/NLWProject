@@ -629,5 +629,22 @@ footer .social a:hover {
 
 /* ###### login css ######*/
 .calendarWrap {
+  display: block;
+}
+.login{
   display: none;
+}
+
+.horarioToAdd{
+  border: 1px solid black;
+  border-radius: 4px;
+  outline: none;
+  padding: .2rem .2rem;
+  font-family: var(--body-font);
+}
+.horarioToAdd option{
+  margin-bottom: 0.2rem;
+
+  font-family: var(--body-font);
+  
 }

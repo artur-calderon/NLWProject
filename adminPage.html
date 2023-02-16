@@ -40,7 +40,6 @@
             <input type="email" name="" id="email" />
             <p>senha:</p>
             <input type="password" id="password" />
-            <input type="time" step="1800" />
             <!-- 5 min step -->
             <button id="buttonLoga">Entrar</button>
           </div>
@@ -64,7 +63,9 @@
               <h2>Adicionar Horário</h2>
               <label>Data</label>
               <input type="text" id="evtDate" readonly />
-              <label>Details</label>
+              <label>Horários</label>
+              <select class="horarioToAdd"></select>
+
               <textarea id="evtTxt" required></textarea>
 
               <input id="evtDel" type="button" value="Delete" />

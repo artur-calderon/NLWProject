@@ -1,3 +1,24 @@
+const test = document.querySelector('.horarioToAdd')
+let hour = 8
+let minutes1 = '00'
+let minutes2 = '30'
+
+for (let i = 0; i < 11; i++) {
+  test.innerHTML += `
+  	<option value="${hour + i}:${minutes1}">${hour + i}:${minutes1}</option>
+    <option value="${hour + i}:${minutes2}">${hour + i}:${minutes2}</option>
+  `
+}
+
+test.addEventListener('change',()=>{
+
+
+  cal.hfTxt = String(test.value)
+  console.log(test.value)
+  console.log(cal.hfTxt)
+})
+
+
 var cal = {
   // (A) PROPERTIES
   // (A1) FLAGS & DATA
@@ -34,6 +55,8 @@ var cal = {
   hfTxt: null,
   hfDel: null, // form fields
 
+ 
+
   // (B) INIT CALENDAR
   init: () => {
     // (B1) GET HTML ELEMENTS
@@ -43,7 +66,7 @@ var cal = {
     cal.hFormWrap = document.getElementById('calForm')
     cal.hForm = cal.hFormWrap.querySelector('form')
     cal.hfDate = document.getElementById('evtDate')
-    cal.hfTxt = document.getElementById('evtTxt')
+    // cal.hfTxt = document.getElementById('horarioToAdd')
     cal.hfDel = document.getElementById('evtDel')
 
     // (B2) APPEND MONTHS/YEAR
@@ -196,6 +219,8 @@ var cal = {
 
   // (E) SAVE EVENT
   save: () => {
+    console.log(cal.hfTxt)
+    console.log(cal.data[cal.sDay])
     cal.data[cal.sDay] = cal.hfTxt.value
     localStorage.setItem(
       `cal-${cal.sMth}-${cal.sYear}`,
@@ -221,14 +246,4 @@ var cal = {
 }
 window.onload = cal.init
 
-// const test = document.querySelector('.sel')
-// let hour = 8
-// let minutes1 = '00'
-// let minutes2 = 30
 
-// for (let i = 0; i < 11; i++) {
-//   test.innerHTML += `
-//   	<option>${hour + i}:${minutes1}</option>
-//     <option>${hour + i}:${minutes2}</option>
-//   `
-// }
