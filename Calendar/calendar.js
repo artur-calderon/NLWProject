@@ -10,14 +10,11 @@ for (let i = 0; i < 11; i++) {
   `
 }
 
-test.addEventListener('change',()=>{
-
-
-  cal.hfTxt = String(test.value)
-  console.log(test.value)
-  console.log(cal.hfTxt)
-})
-
+// test.addEventListener('change', () => {
+//   cal.hfTxt = String(test)
+//   console.log(test.value)
+//   console.log(cal.hfTxt)
+// })
 
 var cal = {
   // (A) PROPERTIES
@@ -55,8 +52,6 @@ var cal = {
   hfTxt: null,
   hfDel: null, // form fields
 
- 
-
   // (B) INIT CALENDAR
   init: () => {
     // (B1) GET HTML ELEMENTS
@@ -66,7 +61,7 @@ var cal = {
     cal.hFormWrap = document.getElementById('calForm')
     cal.hForm = cal.hFormWrap.querySelector('form')
     cal.hfDate = document.getElementById('evtDate')
-    // cal.hfTxt = document.getElementById('horarioToAdd')
+    cal.hfTxt = document.getElementById('evtTxt')
     cal.hfDel = document.getElementById('evtDel')
 
     // (B2) APPEND MONTHS/YEAR
@@ -173,6 +168,7 @@ var cal = {
     // (C6) CALENDAR BODY - INDIVIDUAL DAYS & EVENTS
     wrap = cal.hWrap.querySelector('.calBody')
     row = cal.hWrap.querySelector('.calRow')
+
     for (let i = 0; i < squares.length; i++) {
       // (C6-1) GENERATE CELL
       let cell = document.createElement('div')
@@ -185,8 +181,14 @@ var cal = {
       } else {
         cell.innerHTML = `<div class="cellDate">${squares[i]}</div>`
         if (cal.data[squares[i]]) {
-          cell.innerHTML +=
-            "<div class='evt'>" + cal.data[squares[i]] + '</div>'
+          console.log(nowDay)
+          let events = []
+          events.push(cal.data[squares[i]])
+          // console.log(events)
+          events.forEach(evt => {
+            cell.innerHTML +=
+              "<div class='evt'>" + cal.data[squares[i]] + '</div>'
+          })
         }
         cell.onclick = () => {
           cal.show(cell)
@@ -219,8 +221,6 @@ var cal = {
 
   // (E) SAVE EVENT
   save: () => {
-    console.log(cal.hfTxt)
-    console.log(cal.data[cal.sDay])
     cal.data[cal.sDay] = cal.hfTxt.value
     localStorage.setItem(
       `cal-${cal.sMth}-${cal.sYear}`,
@@ -245,5 +245,3 @@ var cal = {
   }
 }
 window.onload = cal.init
-
-
