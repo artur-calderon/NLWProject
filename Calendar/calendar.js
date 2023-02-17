@@ -168,8 +168,9 @@ var cal = {
     // (C6) CALENDAR BODY - INDIVIDUAL DAYS & EVENTS
     wrap = cal.hWrap.querySelector('.calBody')
     row = cal.hWrap.querySelector('.calRow')
-
+   
     for (let i = 0; i < squares.length; i++) {
+      
       // (C6-1) GENERATE CELL
       let cell = document.createElement('div')
       cell.className = 'calCell box-selector'
@@ -180,14 +181,15 @@ var cal = {
         cell.classList.add('calBlank')
       } else {
         cell.innerHTML = `<div class="cellDate">${squares[i]}</div>`
+        
         if (cal.data[squares[i]]) {
-          console.log(nowDay)
-          let events = []
-          events.push(cal.data[squares[i]])
-          // console.log(events)
+          var events = []
+          console.log(events)
+            events.push(cal.data[squares[i]])
+          
           events.forEach(evt => {
             cell.innerHTML +=
-              "<div class='evt'>" + cal.data[squares[i]] + '</div>'
+              "<div class='evt'>" + evt + '</div>'
           })
         }
         cell.onclick = () => {
