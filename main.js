@@ -108,3 +108,79 @@ window.addEventListener('scroll', () => {
   buttonTop()
   ativaButtonMenu()
 })
+
+
+
+// ######## CALENDAR SCRIPT INIT
+var calendarEl = document.getElementById('calendar');
+var cal = new FullCalendar.Calendar(calendarEl,{
+  locale:'pt-br',
+  headerToolbar:{
+    left: 'prev,next today',
+    center: 'title',
+    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+  },
+  navLinks:true,
+  selectable:true,
+  selectMirror:true,
+   select: function(arg) {
+    var title = prompt('Event Title:');
+    if (title) {
+      cal.addEvent({
+        title: title,
+        start: arg.start,
+        end: arg.end,
+        allDay: arg.allDay
+      })
+    }
+    cal.unselect()
+  }, 
+  eventClick: function(arg) {
+    if (confirm('Are you sure you want to delete this event?')) {
+      arg.event.remove()
+    }
+  },
+  editable: true,
+  dayMaxEvents: true,
+})
+cal.render()
+const btn = document.getElementById('addEvent')
+
+// document.addEventListener('DOMContentLoaded', function() {
+ 
+
+//   var calendar = new FullCalendar.Calendar(calendarEl, {
+//     initialView: 'dayGridMonth',
+//     initialDate: '2023-02-07',
+//     headerToolbar: {
+//       left: 'prev,next today',
+//       center: 'title addEventButton',
+//       right: 'dayGridMonth,timeGridWeek,timeGridDay'
+//     },
+//     customButtons:{
+//       addEventButton:{
+//         text:"Adicione um horário",
+//         click:function(){
+//           calendar.addEvent({
+//             title:'Evento Teste',
+//             start:'2023-02-20',
+//             allDay:true
+//           })
+//         }
+//       }
+//     }
+//   });
+
+//   calendar.render();
+// });
+
+
+btn.addEventListener('click',()=>{
+  cal.addEvent({
+    title:'Evento Teste',
+    start:'2023-02-20',
+    allDay:true
+  })
+  
+
+})

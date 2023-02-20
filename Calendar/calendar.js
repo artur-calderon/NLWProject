@@ -51,6 +51,7 @@ var cal = {
   hfDate: null,
   hfTxt: null,
   hfDel: null, // form fields
+  events : [],
 
   // (B) INIT CALENDAR
   init: () => {
@@ -170,7 +171,7 @@ var cal = {
     row = cal.hWrap.querySelector('.calRow')
    
     for (let i = 0; i < squares.length; i++) {
-      
+     
       // (C6-1) GENERATE CELL
       let cell = document.createElement('div')
       cell.className = 'calCell box-selector'
@@ -183,14 +184,17 @@ var cal = {
         cell.innerHTML = `<div class="cellDate">${squares[i]}</div>`
         
         if (cal.data[squares[i]]) {
-          var events = []
-          console.log(events)
-            events.push(cal.data[squares[i]])
+          cal.events.push(cal.data[squares[i]])
           
-          events.forEach(evt => {
-            cell.innerHTML +=
-              "<div class='evt'>" + evt + '</div>'
-          })
+        
+
+              console.log(squares[i])
+
+              cell.innerHTML +=`
+              <div class='evt'> ${cal.events}</div>`
+
+       
+ 
         }
         cell.onclick = () => {
           cal.show(cell)
@@ -239,7 +243,7 @@ var cal = {
       delete cal.data[cal.sDay]
       localStorage.setItem(
         `cal-${cal.sMth}-${cal.sYear}`,
-        JSON.stringify(cal.data)
+        JSON.stringify(cal.events)
       )
       cal.draw()
       cal.hFormWrap.close()

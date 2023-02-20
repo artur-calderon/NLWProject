@@ -1,109 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./Calendar/calendar.css" />
-    <link rel="stylesheet" href="img/style.css" />
 
-    <title>Agendamento</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./Calendar/calendar.css" />
+  <link rel="stylesheet" href="img/style.css" />
 
-  <body>
-    <header id="header">
-      <nav class="container">
-        <a href="/" class="logo">Beauty<span>salon</span></a>
-        <div class="menu">
-          <ul class="grid">
-            <li><a class="title active" href="#home">Inicio</a></li>
-            <li><a class="title" href="#about">Sobre</a></li>
-            <li><a class="title" href="#services">Serviços</a></li>
-            <!-- <li><a class="title" href="#testimonials">Depoimentos</a></li> -->
-            <li><a class="title" href="#contact">Contato</a></li>
-          </ul>
-        </div>
-        <div class="toggle icon-menu"></div>
-        <div class="toggle icon-close"></div>
-      </nav>
-    </header>
-    <main>
-      <section class="section admin">
-        <div class="container grid">
-          <div class="login">
-            <p>email:</p>
-            <input type="email" name="" id="email" />
-            <p>senha:</p>
-            <input type="password" id="password" />
-            <!-- 5 min step -->
-            <button id="buttonLoga">Entrar</button>
-          </div>
+  <title>Agendamento</title>
+</head>
 
-          <div class="calendarWrap">
-            <h3>Adicione horários para seus clientes</h3>
-            <p>Clique em uma data para adicionar horários</p>
-            <div id="calPeriod">
-              <select id="calMonth"></select>
-              <input type="number" id="calYear" />
-            </div>
-
-            <!-- (B) CALENDAR -->
-            <div id="calWrap"></div>
-          </div>
-
-          <!-- (C) EVENT FORM -->
-          <dialog id="calForm">
-            <form method="dialog">
-              <div id="evtClose">X</div>
-              <h2>Adicionar Horário</h2>
-              <label>Data</label>
-              <input type="text" id="evtDate" readonly />
-              <label>Horários</label>
-              <select class="horarioToAdd" id="evtTxt"></select>
-
-              <!-- <textarea id="evtTxt" required></textarea> -->
-
-              <input id="evtDel" type="button" value="Delete" />
-              <input id="evtSave" type="submit" value="Save" />
-            </form>
-          </dialog>
-        </div>
-      </section>
-    </main>
-    <footer class="section">
-      <div class="container grid">
-        <div class="brand">
-          <a href="#home" class="logo">Beauty<span>salon</span></a>
-          <p>2021 Beautysalon</p>
-          <p>Todos os direitos reservados.</p>
-        </div>
-
-        <div class="social">
-          <a href="https://instagram.com/artur.calderon" target="_blank"
-            ><i class="icon-instagram"></i
-          ></a>
-          <a href="https://facebook.com/artur.calderon35"
-            ><i class="icon-facebook"></i
-          ></a>
-          <a href="https://youtube.com/artur.calderon"
-            ><i class="icon-youtube"></i
-          ></a>
-        </div>
+<body>
+  <header id="header">
+    <nav class="container">
+      <a href="/" class="logo">Beauty<span>salon</span></a>
+      <div class="menu">
+        <ul class="grid">
+          <li><a class="title active" href="#home">Inicio</a></li>
+          <li><a class="title" href="#about">Sobre</a></li>
+          <li><a class="title" href="#services">Serviços</a></li>
+          <!-- <li><a class="title" href="#testimonials">Depoimentos</a></li> -->
+          <li><a class="title" href="#contact">Contato</a></li>
+        </ul>
       </div>
-    </footer>
-    <a href="#home" class="back-to-top"
-      ><img src="assets/fotos/chevron-up.svg" alt=""
-    /></a>
+      <div class="toggle icon-menu"></div>
+      <div class="toggle icon-close"></div>
+    </nav>
+  </header>
+  <main>
+    <section class="section admin">
+      <div class="container grid">
+        <div class="login">
+          <p>email:</p>
+          <input type="email" name="" id="email" />
+          <p>senha:</p>
+          <input type="password" id="password" />
+          <!-- 5 min step -->
+          <button id="buttonLoga">Entrar</button>
+        </div>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script type="module" src="main.js"></script>
-    <script type="module" src="./firebase.js"></script>
-    <script src="./Calendar/calendar.js"></script>
-  </body>
+        <div class="calendarWrap">
+          <h3>Adicione horários para seus clientes</h3>
+          <p>Clique em uma data para adicionar horários</p>
+          <button id="addEvent">Adiciona Evento</button>
+         <div id="calendar"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="section">
+    <div class="container grid">
+      <div class="brand">
+        <a href="#home" class="logo">Beauty<span>salon</span></a>
+        <p>2021 Beautysalon</p>
+        <p>Todos os direitos reservados.</p>
+      </div>
+
+      <div class="social">
+        <a href="https://instagram.com/artur.calderon" target="_blank"><i class="icon-instagram"></i></a>
+        <a href="https://facebook.com/artur.calderon35"><i class="icon-facebook"></i></a>
+        <a href="https://youtube.com/artur.calderon"><i class="icon-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+  <a href="#home" class="back-to-top"><img src="assets/fotos/chevron-up.svg" alt="" /></a>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script type="module" src="main.js"></script>
+  <script type="module" src="./firebase.js"></script>
+  <script src="
+https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js
+"></script>
+  <!-- <script src="./Calendar/calendar.js"></script> -->
+  <script src="./fullcalendar-6.1.4/packages/core/locales-all.global.js"></script>
+</body>
+
 </html>
