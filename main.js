@@ -111,28 +111,73 @@ window.addEventListener('scroll', () => {
 
 
 
+
+
 // ######## CALENDAR SCRIPT INIT
+const horarioToAdd = document.querySelector('.horarioToAdd')
+let hour = 8
+let minutes1 = '00'
+let minutes2 = '30'
+
+for (let i = 0; i < 11; i++) {
+  horarioToAdd.innerHTML += `
+  	<option value="${hour + i}:${minutes1}">${hour + i}:${minutes1}</option>
+    <option value="${hour + i}:${minutes2}">${hour + i}:${minutes2}</option>
+  `
+}
+
+
 var calendarEl = document.getElementById('calendar');
 var cal = new FullCalendar.Calendar(calendarEl,{
   locale:'pt-br',
   headerToolbar:{
     left: 'prev,next today',
-    center: 'title',
+    center: 'addEventButton',
     right: 'dayGridMonth,timeGridWeek,timeGridDay'
+  },
+  
+  customButtons: {
+    addEventButton: {
+      text: 'add event...',
+      click: function() {
+        var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+        var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+
+        if (!isNaN(date.valueOf())) { // valid?
+          calendar.addEvent({
+            title: 'dynamic event',
+            start: date,
+            allDay: true
+          });
+          alert('Great. Now, update your database...');
+        } else {
+          alert('Invalid date.');
+        }
+      }
+    }
   },
   navLinks:true,
   selectable:true,
   selectMirror:true,
-   select: function(arg) {
-    var title = prompt('Event Title:');
-    if (title) {
-      cal.addEvent({
-        title: title,
-        start: arg.start,
-        end: arg.end,
-        allDay: arg.allDay
-      })
-    }
+   select: function(args) {
+    // var title = prompt('Event Title:');
+    const btnSaveModal = document.querySelector('#evtSave')
+    modal.showModal()  
+    console.log('fora')
+    btnSaveModal.addEventListener('click',()=>{
+      console.log('click')
+    console.log(horarioToAdd.value)
+      if (horarioToAdd.value) {
+        cal.addEvent({
+          title:  horarioToAdd.value,
+          start: args.start,
+          end: args.end,
+          allDay: args.allDay
+        })
+      }
+    })
+    let closeModalbtn = document.querySelector('#evtClose')
+    closeModalbtn.addEventListener('click',()=> modal.close())
     cal.unselect()
   }, 
   eventClick: function(arg) {
@@ -144,7 +189,21 @@ var cal = new FullCalendar.Calendar(calendarEl,{
   dayMaxEvents: true,
 })
 cal.render()
-const btn = document.getElementById('addEvent')
+let modal = document.querySelector('#calForm')
+// const clickDayToShowModal = document.querySelectorAll('td ')
+
+
+// clickDayToShowModal.forEach(td => {
+//   const all = td.getAttribute('role')
+//   td.addEventListener('click',()=>{
+//     if(all){
+//       modal.showModal();
+//     }
+//     console.log('click')
+   
+//   })
+  
+// });
 
 // document.addEventListener('DOMContentLoaded', function() {
  
@@ -175,12 +234,3 @@ const btn = document.getElementById('addEvent')
 // });
 
 
-btn.addEventListener('click',()=>{
-  cal.addEvent({
-    title:'Evento Teste',
-    start:'2023-02-20',
-    allDay:true
-  })
-  
-
-})

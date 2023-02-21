@@ -577,6 +577,82 @@ footer .social a:hover {
   }
 }
 
+/* ############# modal */
+
+#calForm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+#calForm:is([open]) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+#calForm form {
+  position: relative;
+  width: 450px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #fff;
+}
+#evtClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  color: #b12020;
+  font-size: 28px;
+  font-weight: 700;
+  cursor: pointer;
+}
+#calForm h2 {
+  margin: 0 0 15px 0;
+}
+#calForm label,
+#calForm input[type='text'],
+#calForm textarea {
+  width: 100%;
+}
+#calForm label {
+  color: #a1a1a1;
+  font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+#calForm input[type='text'],
+#calForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  background: #f5f5f5;
+}
+#calForm textarea {
+  height: 100px;
+  resize: none;
+}
+#calForm input[type='button'],
+#calForm input[type='submit'] {
+  border: 0;
+  padding: 10px;
+  margin: 10px 2px 0 0;
+  color: #fff;
+  background:hsl(337, 60%, 70%);
+  cursor: pointer;
+}
+
+/* ########## FIM MODAL */
+
 /* ############### AGENDAMENTO ################ */
 .box-selector {
   cursor: pointer;
@@ -648,3 +724,7 @@ footer .social a:hover {
   font-family: var(--body-font);
   
 }
+/* 
+.fc-daygrid-day  {
+  background-color: red;
+} */

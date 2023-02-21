@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="./Calendar/calendar.css" />
   <link rel="stylesheet" href="img/style.css" />
 
   <title>Agendamento</title>
@@ -45,9 +44,22 @@
         <div class="calendarWrap">
           <h3>Adicione horários para seus clientes</h3>
           <p>Clique em uma data para adicionar horários</p>
-          <button id="addEvent">Adiciona Evento</button>
-         <div id="calendar"></div>
-      </div>
+          <div id="calendar"></div>
+        </div>
+        <dialog id="calForm">
+          <form method="dialog">
+            <div id="evtClose">X</div>
+            <h2>Cadastra Horário</h2>
+            <!-- <label>Date</label>
+            <input type="text" id="evtDate" readonly> -->
+            <label>Details</label>
+            <!-- <textarea id="evtTxt" required></textarea> -->
+            <select class="horarioToAdd" ></select>
+
+            <!-- <input id="evtDel" type="button" value="Delete"> -->
+            <input id="evtSave" type="submit" value="Salvar">
+          </form>
+        </dialog>
     </section>
   </main>
   <footer class="section">
