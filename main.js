@@ -114,6 +114,7 @@ window.addEventListener('scroll', () => {
 
 
 // ######## CALENDAR SCRIPT INIT
+let a; // pega as informações do dia em questão para salvar
 const horarioToAdd = document.querySelector('.horarioToAdd')
 let hour = 8
 let minutes1 = '00'
@@ -140,19 +141,7 @@ var cal = new FullCalendar.Calendar(calendarEl,{
     addEventButton: {
       text: 'add event...',
       click: function() {
-        var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-        var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-
-        if (!isNaN(date.valueOf())) { // valid?
-          calendar.addEvent({
-            title: 'dynamic event',
-            start: date,
-            allDay: true
-          });
-          alert('Great. Now, update your database...');
-        } else {
-          alert('Invalid date.');
-        }
+        modal.showModal();
       }
     }
   },
@@ -161,27 +150,16 @@ var cal = new FullCalendar.Calendar(calendarEl,{
   selectMirror:true,
    select: function(args) {
     // var title = prompt('Event Title:');
-    const btnSaveModal = document.querySelector('#evtSave')
-    modal.showModal()  
-    console.log('fora')
-    btnSaveModal.addEventListener('click',()=>{
-      console.log('click')
-    console.log(horarioToAdd.value)
-      if (horarioToAdd.value) {
-        cal.addEvent({
-          title:  horarioToAdd.value,
-          start: args.start,
-          end: args.end,
-          allDay: args.allDay
-        })
-      }
-    })
+    modal.showModal();
+   a = args
+
+  
     let closeModalbtn = document.querySelector('#evtClose')
     closeModalbtn.addEventListener('click',()=> modal.close())
     cal.unselect()
   }, 
   eventClick: function(arg) {
-    if (confirm('Are you sure you want to delete this event?')) {
+    if (confirm('Tem certeza que quer excluir esse horário?')) {
       arg.event.remove()
     }
   },
@@ -190,6 +168,20 @@ var cal = new FullCalendar.Calendar(calendarEl,{
 })
 cal.render()
 let modal = document.querySelector('#calForm')
+const btnSaveModal = document.querySelector('#evtSave')
+
+
+  btnSaveModal.addEventListener('click',()=>{
+    console.log(horarioToAdd.value)
+      if (horarioToAdd.value) {
+        cal.addEvent({
+          title:  horarioToAdd.value,
+          start: a.start,
+          end: a.end,
+          allDay: a.allDay
+        })
+      }
+    })
 // const clickDayToShowModal = document.querySelectorAll('td ')
 
 
