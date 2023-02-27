@@ -4,6 +4,14 @@ import {
   getAuth,
   signInWithEmailAndPassword
 } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js'
+import {
+  getFirestore,
+  addDoc,
+  collection,
+  query,
+  onSnapshot,
+  where
+} from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,6 +28,7 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
+export const db = getFirestore(app)
 
 const email = document.getElementById('email')
 const password = document.getElementById('password')
@@ -40,3 +49,13 @@ buttonLoga.addEventListener('click', () => {
     })
     .catch(err => console.log(err))
 })
+
+export function saveEvent(data) {
+  const docRef = addDoc(collection(db, 'events'), data)
+    .then(res => {})
+    .catch(err => console.log(err))
+}
+
+export function getEvents(store) {
+  return query(collection(db, 'events'), where('store', '==', store))
+}

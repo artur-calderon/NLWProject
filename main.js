@@ -1,3 +1,6 @@
+import { getEvents, saveEvent } from './firebase.js'
+import { onSnapshot } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js'
+
 const nav = document.querySelector('#header nav')
 const toggle = document.querySelectorAll('nav .toggle')
 const links = document.querySelectorAll('nav ul li a')
@@ -109,12 +112,11 @@ window.addEventListener('scroll', () => {
   ativaButtonMenu()
 })
 
-
-
-
-
 // ######## CALENDAR SCRIPT INIT
-let a; // pega as informações do dia em questão para salvar
+var storedEvents = []
+
+let a // pega as informações do dia em questão para salvar
+
 const horarioToAdd = document.querySelector('.horarioToAdd')
 let hour = 8
 let minutes1 = '00'
@@ -127,102 +129,66 @@ for (let i = 0; i < 11; i++) {
   `
 }
 
-
-var calendarEl = document.getElementById('calendar');
-var cal = new FullCalendar.Calendar(calendarEl,{
-  locale:'pt-br',
-  headerToolbar:{
+var calendarEl = document.getElementById('calendar')
+var cal = new FullCalendar.Calendar(calendarEl, {
+  locale: 'pt-br',
+  headerToolbar: {
     left: 'prev,next today',
-    center: 'addEventButton',
+    center: 'title',
     right: 'dayGridMonth,timeGridWeek,timeGridDay'
   },
-  
-  customButtons: {
-    addEventButton: {
-      text: 'add event...',
-      click: function() {
-        modal.showModal();
-      }
-    }
-  },
-  navLinks:true,
-  selectable:true,
-  selectMirror:true,
-   select: function(args) {
-    // var title = prompt('Event Title:');
-    modal.showModal();
-   a = args
+  navLinks: true,
+  selectable: true,
+  selectMirror: true,
+  select: function (args) {
+    modal.showModal()
+    a = args
 
-  
     let closeModalbtn = document.querySelector('#evtClose')
-    closeModalbtn.addEventListener('click',()=> modal.close())
+    closeModalbtn.addEventListener('click', () => modal.close())
     cal.unselect()
-  }, 
-  eventClick: function(arg) {
+  },
+  eventClick: function (arg) {
     if (confirm('Tem certeza que quer excluir esse horário?')) {
       arg.event.remove()
     }
   },
+  events: [
+    {
+      title: 'All Day Event',
+      start: '2023-02-01'
+    }
+  ],
   editable: true,
-  dayMaxEvents: true,
+  dayMaxEvents: true
 })
 cal.render()
 let modal = document.querySelector('#calForm')
 const btnSaveModal = document.querySelector('#evtSave')
 
-
-  btnSaveModal.addEventListener('click',()=>{
-    console.log(horarioToAdd.value)
-      if (horarioToAdd.value) {
-        cal.addEvent({
-          title:  horarioToAdd.value,
-          start: a.start,
-          end: a.end,
-          allDay: a.allDay
-        })
-      }
+btnSaveModal.addEventListener('click', () => {
+  console.log(horarioToAdd.value)
+  console.log(a.start, a.end, a.allDay)
+  if (horarioToAdd.value) {
+    // saveEvent({
+    //   store: 'BeautySalon',
+    //   title: horarioToAdd.value,
+    //   start: a.start,
+    //   end: a.end,
+    //   allDay: a.allDay
+    // })
+  }
+  onSnapshot(getEvents('BeautySalon'), result => {
+    result.forEach(element => {
+      console.log(getDate(element.data().start))
+      console.log(Date(element.data().end))
+      console.log(element.data().allDay)
+      cal.addEvent({
+        title: element.data().title,
+        start: Date(element.data().start),
+        end: Date(element.data().end),
+        allDay: element.data().allDay
+      })
     })
-// const clickDayToShowModal = document.querySelectorAll('td ')
-
-
-// clickDayToShowModal.forEach(td => {
-//   const all = td.getAttribute('role')
-//   td.addEventListener('click',()=>{
-//     if(all){
-//       modal.showModal();
-//     }
-//     console.log('click')
-   
-//   })
-  
-// });
-
-// document.addEventListener('DOMContentLoaded', function() {
- 
-
-//   var calendar = new FullCalendar.Calendar(calendarEl, {
-//     initialView: 'dayGridMonth',
-//     initialDate: '2023-02-07',
-//     headerToolbar: {
-//       left: 'prev,next today',
-//       center: 'title addEventButton',
-//       right: 'dayGridMonth,timeGridWeek,timeGridDay'
-//     },
-//     customButtons:{
-//       addEventButton:{
-//         text:"Adicione um horário",
-//         click:function(){
-//           calendar.addEvent({
-//             title:'Evento Teste',
-//             start:'2023-02-20',
-//             allDay:true
-//           })
-//         }
-//       }
-//     }
-//   });
-
-//   calendar.render();
-// });
-
-
+  })
+})

@@ -36,25 +36,14 @@
         <div class="container grid">
           <h3>Horários disponíveis</h3>
           <p>Selecione um horário</p>
-          <div id="calPeriod">
-            <select id="calMonth"></select>
-            <input type="number" id="calYear" />
-          </div>
-
-          <!-- (B) CALENDAR -->
-          <div id="calWrap"></div>
-
+          <div id="calendar"></div>
           <!-- (C) EVENT FORM -->
           <dialog id="calForm">
             <form method="dialog">
               <div id="evtClose">X</div>
               <h2>CALENDAR EVENT</h2>
-              <label>Date</label>
-              <input type="text" id="evtDate" readonly />
               <label>Details</label>
-              <!-- <textarea id="evtTxt" required></textarea> -->
               <select class="horarioToAdd" id="evtTxt"></select>
-              <input id="evtDel" type="button" value="Delete" />
               <input id="evtSave" type="submit" value="Save" />
             </form>
           </dialog>
@@ -88,7 +77,10 @@
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="main.js"></script>
-    <script src="./Calendar/calendar.js"></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js
+    "></script>
+    <script src="./fullcalendar-6.1.4/packages/core/locales-all.global.js"></script>
+    <script src="agendamento.js"></script>
   </body>
 </html>
