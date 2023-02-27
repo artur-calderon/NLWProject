@@ -1,5 +1,4 @@
-import { getEvents, saveEvent } from './firebase.js'
-import { onSnapshot } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js'
+import { saveEvent, } from './firebase.js'
 
 const nav = document.querySelector('#header nav')
 const toggle = document.querySelectorAll('nav .toggle')
@@ -113,7 +112,9 @@ window.addEventListener('scroll', () => {
 })
 
 // ######## CALENDAR SCRIPT INIT
-var storedEvents = []
+
+
+
 
 let a // pega as informações do dia em questão para salvar
 
@@ -149,16 +150,12 @@ var cal = new FullCalendar.Calendar(calendarEl, {
     cal.unselect()
   },
   eventClick: function (arg) {
+    console.log(arg)
     if (confirm('Tem certeza que quer excluir esse horário?')) {
       arg.event.remove()
     }
   },
-  events: [
-    {
-      title: 'All Day Event',
-      start: '2023-02-01'
-    }
-  ],
+
   editable: true,
   dayMaxEvents: true
 })
@@ -167,28 +164,14 @@ let modal = document.querySelector('#calForm')
 const btnSaveModal = document.querySelector('#evtSave')
 
 btnSaveModal.addEventListener('click', () => {
-  console.log(horarioToAdd.value)
-  console.log(a.start, a.end, a.allDay)
+
   if (horarioToAdd.value) {
-    // saveEvent({
-    //   store: 'BeautySalon',
-    //   title: horarioToAdd.value,
-    //   start: a.start,
-    //   end: a.end,
-    //   allDay: a.allDay
-    // })
-  }
-  onSnapshot(getEvents('BeautySalon'), result => {
-    result.forEach(element => {
-      console.log(getDate(element.data().start))
-      console.log(Date(element.data().end))
-      console.log(element.data().allDay)
-      cal.addEvent({
-        title: element.data().title,
-        start: Date(element.data().start),
-        end: Date(element.data().end),
-        allDay: element.data().allDay
-      })
+    saveEvent({
+      store: 'BeautySalon',
+      title: horarioToAdd.value,
+      start: a.startStr,
+      end: a.end,
+      allDay: a.allDay
     })
-  })
+  }
 })

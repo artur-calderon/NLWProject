@@ -52,10 +52,29 @@ buttonLoga.addEventListener('click', () => {
 
 export function saveEvent(data) {
   const docRef = addDoc(collection(db, 'events'), data)
-    .then(res => {})
+    .then(res => { })
     .catch(err => console.log(err))
 }
 
-export function getEvents(store) {
-  return query(collection(db, 'events'), where('store', '==', store))
+
+export function getEvents() {
+  const q = query(collection(db, 'events'))
+  var title = ''
+  onSnapshot(q, result => {
+    result.docs.forEach(element => {
+      console.log(element.data())
+      title = element.data().title
+      start = element.data().start
+      // cal.addEvent({
+      //   title: element.data().title,
+      //   start: element.data().start,
+      //   end: Date(element.data().end),
+      //   allDay: element.data().allDay
+      // })
+    })
+  })
 }
+getEvents()
+
+// export const eventsJson = JSON.stringify(storedEvents)
+
