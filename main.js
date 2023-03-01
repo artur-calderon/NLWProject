@@ -155,7 +155,7 @@ var cal = new FullCalendar.Calendar(calendarEl, {
       arg.event.remove()
     }
   },
-
+    
   editable: true,
   dayMaxEvents: true
 })
@@ -175,3 +175,4 @@ btnSaveModal.addEventListener('click', () => {
     })
   }
 })
+

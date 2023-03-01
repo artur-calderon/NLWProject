@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js'
 import {
   getAuth,
@@ -59,12 +60,12 @@ export function saveEvent(data) {
 
 export function getEvents() {
   const q = query(collection(db, 'events'))
-  var title = ''
+ 
   onSnapshot(q, result => {
     result.docs.forEach(element => {
       console.log(element.data())
-      title = element.data().title
-      start = element.data().start
+     
+   
       // cal.addEvent({
       //   title: element.data().title,
       //   start: element.data().start,
@@ -75,6 +76,4 @@ export function getEvents() {
   })
 }
 getEvents()
-
-// export const eventsJson = JSON.stringify(storedEvents)
 
