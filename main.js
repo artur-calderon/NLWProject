@@ -192,3 +192,19 @@ btnSaveModal.addEventListener('click', () => {
     })
   })
 })
+const token = '2c59a26a0d7f74b595e79221114ac044'
+const idApp = '1339200053289314'
+
+window.fbAsyncInit = function () {
+  FB.init({
+    appId: '1339200053289314',
+    autoLogAppEvents: true,
+    xfbml: true,
+    version: 'v16.0'
+  })
+  FB.getLoginStatus(res => console.log(res))
+}
+
+// fetch(
+//   `https://graph.facebook.com/v5.0/impactoacademiajpr/insights?metric=follower_count,impressions,profile_views,reach&period=day&&access_token=${token}`
+// ).then(res => res.json().then(re => console.log(re)))
